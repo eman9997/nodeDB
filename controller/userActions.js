@@ -1,16 +1,35 @@
+const db = require('./../models/data.User.Model.js');
+const client = require('./../models/user.Model.js');
 
-class Client{
-  constructor(){
-    this.firstName=firstName
-    this.lastName=lastName
-    this.balance=balance
-  }
-  withdraw(moneyOut){
-    this.balance -= moneyOut;
-    return this.balance
-  }
-  depost(moneyIn){
-    this.balance += moneyOut;
-    return this.balance
-  }
+
+const emanuel = new client("emanuel", "fonseca", 100);
+
+console.log(emanuel);
+createUser(emanuel)
+.then(result => {
+    console.log("Created User");
+})
+.catch(error => {
+    console.log("Create User Failed");
+    console.log(error);
+})
+
+
+
+async function createUser(user) {
+    const db_user = db.build(user);
+
+    try {
+        await db_user.save();
+        console.log("worked");
+    }
+    catch {
+        console.log("oops");
+    }
 }
+
+// const db_user = db.build({ 
+//     firstName: user.firstName,
+//     lastName: user.lastName,
+//     balance: user.balance
+// });
